@@ -4,11 +4,13 @@ using SocialAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SocialAPI.Controllers
 {
-    [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
+    [ApiController]
     public class ValueController : ControllerBase
     {
         private readonly DataContext _context;
@@ -27,8 +29,8 @@ namespace SocialAPI.Controllers
         }
 
         //GET api/value/value 101
-        [HttpGet]
-        [Route("{name}")]
+        [AllowAnonymous]
+        [HttpGet("{name}")]
         public async Task<IActionResult> GetByName(string name)
         {
             var model = await _context.Values.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
@@ -39,9 +41,7 @@ namespace SocialAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostValue([FromBody] Value value)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Invalid Request");
-
+            if (!ModelState.IsValid) return BadRequest("Invalid Request");
             var model = new Value() { ID = value.ID, Name = value.Name };
             await _context.Values.AddAsync(model);
             await _context.SaveChangesAsync();
@@ -52,9 +52,8 @@ namespace SocialAPI.Controllers
         [HttpPut]
         public IActionResult UpdateValue([FromBody] Value value)
         {
-            var query = _context.Values.Where(x => x.Name == value.Name).FirstOrDefault();
-            if (query == null)
-                return NotFound();
+            var query = _context.Values.Where(x => x.ID == value.ID).FirstOrDefault();
+            if (query == null) return NotFound();
 
             query.Name = value.Name;
             _context.Entry(query).State = EntityState.Modified;
