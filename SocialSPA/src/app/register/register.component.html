@@ -1,0 +1,19 @@
+<h2 class="text-center mt-3 mb-3">Sign Up</h2>
+<hr>
+<form #registerForm="ngForm" (ngSubmit)="register()">
+
+  <div class="form-group">
+    <input type="username" class="form-control" id="username" name="username" placeholder="Enter Username" required [(ngModel)]="model.username">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required [(ngModel)]="model.password">
+  </div>
+
+  <div class="mt-4 text-center">
+    <button class="btn btn-outline-danger mr-3" [disabled]="registerForm.invalid" type="submit">Sign Up</button>
+    <button class="btn btn-outline-success mr-3" (click)="registerForm.reset()" type="button">Reset</button>
+    <button class="btn btn-outline-info" type="button" (click)="emitToParent()">Back to Home</button>
+  </div>
+
+</form>

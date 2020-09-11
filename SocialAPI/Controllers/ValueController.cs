@@ -20,6 +20,7 @@ namespace SocialAPI.Controllers
         }
 
         //GET api/value
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {

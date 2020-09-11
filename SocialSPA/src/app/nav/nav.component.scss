@@ -1,0 +1,41 @@
+.header-bg {
+  background-color: #1976d2;
+}
+
+.nav-item a,
+.navbar span,
+.btn-outline-primary {
+  color: white;
+}
+
+.navbar {
+  & img {
+    margin: 0 4px;
+    width: 40px;
+  }
+
+  & span {
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.nav-item a {
+  font-weight: bold;
+  font-size: 16px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  font-weight: 600;
+  border: 1px solid white;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

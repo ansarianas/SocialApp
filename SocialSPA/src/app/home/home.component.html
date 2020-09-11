@@ -1,0 +1,20 @@
+<div class="container mt-5 text-center text-capitalize">
+  <div class="row" *ngIf="!registerMode">
+    <div class="col-12">
+      <h2 class="mb-3">Find people</h2>
+      <h4 class="mb-3">All you need is to sign up</h4>
+      <div class="mt-4">
+        <button class="btn btn-outline-danger mr-3" type="button" (click)="enableRegisterMode()">Sign Up</button>
+        <button class="btn btn-outline-success" type="button">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+
+  <div class="row justify-content-center" *ngIf="registerMode">
+    <div class="col-4">
+      <app-register (backToHome)="disableRegisterMode($event)"></app-register>
+    </div>
+  </div>
+</div>
