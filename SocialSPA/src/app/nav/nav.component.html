@@ -30,13 +30,11 @@
         </div>
       </div>
 
-      <div *ngIf="!isLoggedIn()">
-        <form class="form-inline" #loginForm="ngForm" (ngSubmit)="login()">
-          <input type="text" class="form-control mr-3" placeholder="Username" name="username" id="username" required [(ngModel)]="model.username">
-          <input type="password" class="form-control mr-3" placeholder="Password" name="password" id="password" required [(ngModel)]="model.password">
-          <button class="btn btn-outline-primary mr-5" type="submit" [disabled]="!loginForm.valid">Login</button>
-        </form>
-      </div>
+      <form *ngIf="!isLoggedIn()" class="form-inline" #loginForm="ngForm" (ngSubmit)="login()">
+        <input type="text" class="form-control mr-3" placeholder="Username" name="username" id="username" required [(ngModel)]="model.username">
+        <input type="password" class="form-control mr-3" placeholder="Password" name="password" id="password" required [(ngModel)]="model.password">
+        <button class="btn btn-outline-primary mr-5" type="submit" [disabled]="!loginForm.valid">Login</button>
+      </form>
     </div>
   </nav>
 </div>
