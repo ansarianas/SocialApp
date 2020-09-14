@@ -47,13 +47,16 @@ namespace SocialAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUserDTO loginUserDTO)
         {
+
             var user = await _repo.Login(loginUserDTO.Username.ToLower(), loginUserDTO.Password);
+
             if (user == null) return Unauthorized();
 
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(ClaimTypes.Name,user.UserName)
             };
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
             var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
@@ -68,6 +71,7 @@ namespace SocialAPI.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token)
