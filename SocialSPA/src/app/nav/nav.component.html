@@ -1,12 +1,12 @@
 <div class="container-fluid p-0">
-  <nav class="navbar navbar-expand-lg navbar-light header-bg">
+  <nav class="navbar navbar-expand-lg navbar-light header-bg pl-4">
 
     <img alt="Angular Logo" [src]="imagePath" />
 
     <span>{{appName}}</span>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto ml-4">
+      <ul *ngIf="isLoggedIn()" class="navbar-nav mr-auto ml-4">
         <li class="nav-item">
           <a class="nav-link" href="#home">Home</a>
         </li>
@@ -16,21 +16,21 @@
         <li class="nav-item">
           <a class="nav-link" href="#list">List</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
-        </li>
       </ul>
 
-      <div class="dropdown mr-5" *ngIf="isLoggedIn()">
-        <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton">Welcome {{model.username}}</button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#"><i class="fa fa-user"></i><span class="ml-1">Edit Profile</span></a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i><span class="ml-1">Logout</span></a>
-        </div>
+
+      <div class="btn-group" dropdown *ngIf="isLoggedIn()">
+        <button id="button-animated" dropdownToggle type="button" class="btn btn-outline-primary mr-5" aria-controls="dropdown-animated">
+          Welcome {{authService.decodedToken?.unique_name | titlecase }}<i class="ml-1 fa fa-chevron-down"></i>
+        </button>
+        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-user ml-1"></i>Edit Profile</a></li>
+          <li class="dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item pointer" (click)="logout()"><i class="fa fa-sign-out ml-1"></i>Logout</a></li>
+        </ul>
       </div>
 
-      <form *ngIf="!isLoggedIn()" class="form-inline" #loginForm="ngForm" (ngSubmit)="login()">
+      <form *ngIf="!isLoggedIn()" class="form-inline align" #loginForm="ngForm" (ngSubmit)="login()">
         <input type="text" class="form-control mr-3" placeholder="Username" name="username" id="username" required [(ngModel)]="model.username">
         <input type="password" class="form-control mr-3" placeholder="Password" name="password" id="password" required [(ngModel)]="model.password">
         <button class="btn btn-outline-primary mr-5" type="submit" [disabled]="!loginForm.valid">Login</button>

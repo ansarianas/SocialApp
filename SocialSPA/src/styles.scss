@@ -2,3 +2,12 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../node_modules/alertifyjs/build/css/alertify.min.css";
+
+.btn:focus,
+.btn.focus {
+  box-shadow: none;
+}
+
+.pointer {
+  cursor: pointer;
+}

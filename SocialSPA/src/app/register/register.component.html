@@ -1,6 +1,6 @@
 <h2 class="text-center mt-3 mb-3">Sign Up</h2>
 <hr>
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
 
   <div class="form-group">
     <input type="username" class="form-control" id="username" name="username" placeholder="Enter Username" required [(ngModel)]="model.username">

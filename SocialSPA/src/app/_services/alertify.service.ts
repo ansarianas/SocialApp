@@ -9,4 +9,17 @@ export class AlertifyService {
 
   constructor() { }
 
+
+  success(message: string, time: number): void {
+    alertify.success(message, time);
+  }
+
+  error(message: string, time: number): void {
+    alertify.error(message, time);
+  }
+
+  warning(message: string, time: number): void {
+    alertify.warning(message, time);
+  }
+
 }

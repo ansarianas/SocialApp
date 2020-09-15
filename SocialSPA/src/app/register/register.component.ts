@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -13,21 +16,19 @@ export class RegisterComponent implements OnInit {
 
   @Output() backToHome = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit(): void { }
 
-  register(): void {
+  register(form: NgForm): void {
+    // tslint:disable-next-line: max-line-length
     this.authService.register(this.model).subscribe(() => {
-      console.log('Successfully Registered');
-    }, (error) => {
-      console.log('There was an error');
-      console.log(error);
-    });
+      this.alertifyService.success('Registration Successfully', 1);
+      form.reset();
+    }, (error) => this.alertifyService.error(error, 1));
   }
 
   emitToParent(): void {
     this.backToHome.emit(false);
   }
-
 }
