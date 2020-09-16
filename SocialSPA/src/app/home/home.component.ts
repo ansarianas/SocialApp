@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 
   registerMode: boolean;
+  termsMode: boolean;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
@@ -21,5 +21,9 @@ export class HomeComponent implements OnInit {
 
   disableRegisterMode(registerMode: boolean): void {
     this.registerMode = registerMode;
+  }
+
+  enableTerms(): void {
+    this.termsMode = true;
   }
 }

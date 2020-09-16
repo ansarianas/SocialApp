@@ -16,18 +16,27 @@
 
   & span {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
-.nav-item a {
-  font-weight: bold;
-  font-size: 16px;
+.nav-item {
+  &:not(:last-child) {
+    margin-right: 6px;
+  }
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: white;
+  &:hover {
+    background-color: lighten(blue, 20%);
+    border-radius: 8px;
+  }
+  a {
+    font-size: 14px;
+    text-transform: uppercase;
+    &:hover,
+    &:active,
+    &:focus {
+      color: white;
+    }
   }
 }
 
@@ -43,4 +52,11 @@ button:disabled {
 .align {
   position: absolute;
   right: 5px;
+}
+
+.nav-link.active {
+  background-color: lighten(blue, 20%);
+  border-radius: 8px;
+  border: 1px solid white;
+  color: white !important;
 }

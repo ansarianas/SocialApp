@@ -13,7 +13,6 @@
   <div class="mt-4 text-center">
     <button class="btn btn-outline-danger mr-3" [disabled]="registerForm.invalid" type="submit">Sign Up</button>
     <button class="btn btn-outline-success mr-3" (click)="registerForm.reset()" type="button">Reset</button>
-    <button class="btn btn-outline-info" type="button" (click)="emitToParent()">Back to Home</button>
+    <button class="btn btn-outline-info" type="button" (click)="emitToParent()" [routerLink]="['']">Back to Home</button>
   </div>
-
 </form>

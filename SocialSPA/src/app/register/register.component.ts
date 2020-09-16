@@ -20,11 +20,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  register(form: NgForm): void {
-    // tslint:disable-next-line: max-line-length
+  register(registerForm: NgForm): void {
     this.authService.register(this.model).subscribe(() => {
       this.alertifyService.success('Registration Successfully', 1);
-      form.reset();
+      registerForm.reset();
     }, (error) => this.alertifyService.error(error, 1));
   }
 

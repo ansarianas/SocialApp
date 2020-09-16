@@ -14,6 +14,9 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ConnectionsComponent } from './connections/connections.component';
+import { AppGuideComponent } from './app-guide/app-guide.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MessagesComponent,
+    ConnectionsComponent,
+    AppGuideComponent
   ],
 
   imports: [

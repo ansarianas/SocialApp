@@ -4,8 +4,8 @@
       <h2 class="mb-3">Find people</h2>
       <h4 class="mb-3">All you need is to sign up</h4>
       <div class="mt-4">
-        <button class="btn btn-outline-danger mr-3" type="button" (click)="enableRegisterMode()">Sign Up</button>
-        <button class="btn btn-outline-success" type="button">Learn More</button>
+        <a class="btn btn-outline-danger mr-3" (click)="enableRegisterMode()" [routerLink]="['register']">Sign Up</a>
+        <a class="btn btn-outline-info" (click)="enableTerms()" [routerLink]="['terms']">Learn More</a>
       </div>
     </div>
   </div>

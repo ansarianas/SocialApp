@@ -1,23 +1,26 @@
 <div class="container-fluid p-0">
   <nav class="navbar navbar-expand-lg navbar-light header-bg pl-4">
 
-    <img alt="Angular Logo" [src]="imagePath" />
-
-    <span>{{appName}}</span>
+    <a [routerLink]="['/home']">
+      <img alt="Angular Logo" [src]="imagePath" />
+      <span>Social</span>
+    </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul *ngIf="isLoggedIn()" class="navbar-nav mr-auto ml-4">
         <li class="nav-item">
-          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" [routerLink]="['/connections']" routerLinkActive="active">Connections</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#messages">Messages</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#list">List</a>
+          <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="active">Messages</a>
         </li>
       </ul>
 
+      <form *ngIf="!isLoggedIn()" class="form-inline align" ref-loginForm="ngForm" (ngSubmit)="login()">
+        <input type="text" class="form-control mr-3" placeholder="Username" name="username" id="username" required [(ngModel)]="model.username">
+        <input type="password" class="form-control mr-3" placeholder="Password" name="password" id="password" required [(ngModel)]="model.password">
+        <button class="btn btn-outline-primary mr-5" type="submit" [disabled]="!loginForm.valid">Login</button>
+      </form>
 
       <div class="btn-group" dropdown *ngIf="isLoggedIn()">
         <button id="button-animated" dropdownToggle type="button" class="btn btn-outline-primary mr-5" aria-controls="dropdown-animated">
@@ -29,12 +32,6 @@
           <li role="menuitem"><a class="dropdown-item pointer" (click)="logout()"><i class="fa fa-sign-out ml-1"></i>Logout</a></li>
         </ul>
       </div>
-
-      <form *ngIf="!isLoggedIn()" class="form-inline align" #loginForm="ngForm" (ngSubmit)="login()">
-        <input type="text" class="form-control mr-3" placeholder="Username" name="username" id="username" required [(ngModel)]="model.username">
-        <input type="password" class="form-control mr-3" placeholder="Password" name="password" id="password" required [(ngModel)]="model.password">
-        <button class="btn btn-outline-primary mr-5" type="submit" [disabled]="!loginForm.valid">Login</button>
-      </form>
     </div>
   </nav>
 </div>
